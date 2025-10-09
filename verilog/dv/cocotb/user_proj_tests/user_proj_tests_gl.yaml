@@ -1,0 +1,6 @@
+---
+# yaml file contain general design information that would mostly need to be updated in the first run only 
+Tests: 
+    - {name: ram_word, sim: GL}
+    - {name: ram1k_smoke_test, sim: GL}
+
