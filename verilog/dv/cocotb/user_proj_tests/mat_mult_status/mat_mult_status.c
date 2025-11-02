@@ -31,6 +31,7 @@ void *memset(void *s, int c, size_t n)
 #define STATUS_BUSY       (1 << 0)
 #define STATUS_DONE       (1 << 1)
 #define STATUS_READY      (1 << 2)
+#define STATUS_STICKY_DONE (1 << 3)
 
 // Simple delay
 static inline void wait_cycles(uint32_t cycles)

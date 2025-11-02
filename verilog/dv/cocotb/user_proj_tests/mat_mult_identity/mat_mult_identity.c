@@ -40,6 +40,7 @@ void *memset(void *s, int c, size_t n)
 #define STATUS_BUSY       (1 << 0)
 #define STATUS_DONE       (1 << 1)
 #define STATUS_READY      (1 << 2)
+#define STATUS_STICKY_DONE (1 << 3)
 
 #define MATRIX_SIZE       8
 #define MAX_POLL_CYCLES   1000
@@ -119,14 +120,16 @@ void start_multiplication(uint8_t signed_mode)
     *((volatile uint32_t *)MATMUL_CTRL) = ctrl;
 }
 
-// Wait for DONE bit
+// Wait for STICKY_DONE bit and clear it
 uint8_t wait_for_done(void)
 {
     uint32_t poll_count = 0;
 
     while (poll_count < MAX_POLL_CYCLES) {
         uint32_t status = *((volatile uint32_t *)MATMUL_STATUS);
-        if (status & STATUS_DONE) {
+        if (status & STATUS_STICKY_DONE) {
+            // Clear the sticky bit by writing to status register
+            *((volatile uint32_t *)MATMUL_STATUS) = 0;
             return 1;  // Success
         }
         wait_cycles(10);

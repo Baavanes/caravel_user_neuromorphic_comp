@@ -25,11 +25,15 @@
 //                             [1] RESET   = Reset accelerator state
 //                             [2] SIGNED  = 1=signed, 0=unsigned multiplication
 //                             [8] IRQ_EN  = Enable interrupt generation
-//   0x31000004: STATUS      - Status register (read-only)
-//                             [0] BUSY    = Computation in progress
-//                             [1] DONE    = Computation complete
-//                             [2] READY   = Ready for new operation
-//   0x31000008: CYCLE_COUNT - Performance counter (read-only)
+//   0x31000004: STATUS      - Status register (write-to-clear for bit 3)
+//                             [0] BUSY       = Computation in progress
+//                             [1] DONE       = Computation complete (single cycle)
+//                             [2] READY      = Ready for new operation
+//                             [3] STICKY_DONE = Stays high until cleared by:
+//                                               - Write to STATUS register, OR
+//                                               - New computation started (auto-clear)
+//   0x31000008: CYCLE_COUNT - Performance counter (read-only),
+//                              number of clock cycles for last computation
 //   0x3100000C: VERSION     - Module version/ID (0xA7770001)
 //
 //   0x31000100-0x3100013F: Matrix A cache (64 bytes)
@@ -43,15 +47,17 @@
 //   1. Write matrix A elements to 0x31000100-0x3100013F (4 elements per word)
 //   2. Write matrix B elements to 0x31000200-0x3100023F
 //   3. Write CTRL = 0x105 (IRQ_EN | SIGNED | START)
-//   4. Wait for IRQ or poll STATUS[1] for DONE
+//   4. Wait for IRQ or poll STATUS[3] for STICKY_DONE
 //   5. Read results from 0x31000400-0x310004FF
+//   6. Write any value to STATUS (0x31000004) to clear STICKY_DONE
 //
 // Timing:
-//   - Total latency: ~26 cycles
+//   - Total latency: ~26 cycles for 8x8 matrix
 //   - CLEAR:      1 cycle
-//   - COMPUTE:    16 cycles (feed systolic array)
-//   - DRAIN:      8 cycles (pipeline drain)
+//   - COMPUTE:    14 cycles (2*N-2: feed all PEs with diagonal stagger)
+//   - DRAIN:      9 cycles (N+1: allow results to propagate to all PEs)
 //   - WRITEBACK:  1 cycle
+//   - Note: Each PE has 1-cycle pipeline delay for data propagation
 //
 // =============================================================================
 
@@ -61,14 +67,8 @@ module mat_mult_wb #(
     parameter MATRIX_SIZE = 8,
     parameter DATA_WIDTH = 8,
     parameter RESULT_WIDTH = 32,
-    parameter BASE_ADDR = 32'h30000000
+    parameter BASE_ADDR = 32'h31000000
 ) (
-`ifdef USE_POWER_PINS
-    inout         VSS,            // Ground
-    inout         VDDA,           // 1.8V analog supply
-    inout         VDDC,           // 1.8V digital supply
-`endif
-
     // Wishbone interface
     input  wire        wb_clk_i,
     input  wire        wb_rst_i,   // Active HIGH
@@ -90,6 +90,20 @@ module mat_mult_wb #(
     // =========================================================================
 
     localparam VERSION = 32'hA7770001;  // Version identifier
+
+    // Cache size calculations based on MATRIX_SIZE
+    localparam MATRIX_ELEMENTS = MATRIX_SIZE * MATRIX_SIZE;
+    localparam CACHE_AB_WORDS = MATRIX_ELEMENTS / 4;  // 4 elements packed per word
+    localparam CACHE_C_WORDS = MATRIX_ELEMENTS;       // 1 element per word (32-bit)
+
+    // Address bit widths for cache indexing
+    localparam CACHE_AB_ADDR_BITS = $clog2(CACHE_AB_WORDS);
+    localparam CACHE_C_ADDR_BITS = $clog2(CACHE_C_WORDS);
+
+    // FSM timing parameters
+    localparam COMPUTE_END = 2 * MATRIX_SIZE - 2;       // Last cycle of compute phase (feed all PEs)
+    localparam DRAIN_END = 3 * MATRIX_SIZE - 3;         // Last cycle of drain phase (allow results to propagate)
+    localparam COMPUTE_COUNT_BITS = $clog2(DRAIN_END + 1);
 
     // FSM states
     localparam STATE_IDLE      = 3'd0;
@@ -127,6 +141,7 @@ module mat_mult_wb #(
     reg busy;
     reg done;
     reg ready;
+    reg sticky_done;  // Stays high until cleared by write
     reg [31:0] cycle_count;
 
     // Control register write
@@ -157,38 +172,38 @@ module mat_mult_wb #(
     // Cache Memories
     // =========================================================================
 
-    // Matrix A cache: 8x8 elements, 8-bit each, packed 4 per word
-    reg [31:0] cache_a [0:15];  // 16 words = 64 bytes
+    // Matrix A cache: MATRIX_SIZE x MATRIX_SIZE elements, 8-bit each, packed 4 per word
+    reg [31:0] cache_a [0:CACHE_AB_WORDS-1];
 
-    // Matrix B cache: 8x8 elements, 8-bit each, packed 4 per word
-    reg [31:0] cache_b [0:15];  // 16 words = 64 bytes
+    // Matrix B cache: MATRIX_SIZE x MATRIX_SIZE elements, 8-bit each, packed 4 per word
+    reg [31:0] cache_b [0:CACHE_AB_WORDS-1];
 
-    // Matrix C cache: 8x8 elements, 32-bit each
-    reg [31:0] cache_c [0:63];  // 64 words = 256 bytes
+    // Matrix C cache: MATRIX_SIZE x MATRIX_SIZE elements, 32-bit each
+    reg [31:0] cache_c [0:CACHE_C_WORDS-1];
 
     // Cache write logic with byte-select support
     always @(posedge wb_clk_i) begin
         integer idx_ab;
         if (wb_rst_i) begin
-            for (idx_ab = 0; idx_ab < 16; idx_ab = idx_ab + 1) begin
+            for (idx_ab = 0; idx_ab < CACHE_AB_WORDS; idx_ab = idx_ab + 1) begin
                 cache_a[idx_ab] <= 32'h0;
                 cache_b[idx_ab] <= 32'h0;
             end
         end else begin
             // Write to cache A
             if (wb_write && cache_a_access) begin
-                if (wbs_sel_i[0]) cache_a[addr_offset[5:2]][7:0]   <= wbs_dat_i[7:0];
-                if (wbs_sel_i[1]) cache_a[addr_offset[5:2]][15:8]  <= wbs_dat_i[15:8];
-                if (wbs_sel_i[2]) cache_a[addr_offset[5:2]][23:16] <= wbs_dat_i[23:16];
-                if (wbs_sel_i[3]) cache_a[addr_offset[5:2]][31:24] <= wbs_dat_i[31:24];
+                if (wbs_sel_i[0]) cache_a[addr_offset[CACHE_AB_ADDR_BITS+1:2]][7:0]   <= wbs_dat_i[7:0];
+                if (wbs_sel_i[1]) cache_a[addr_offset[CACHE_AB_ADDR_BITS+1:2]][15:8]  <= wbs_dat_i[15:8];
+                if (wbs_sel_i[2]) cache_a[addr_offset[CACHE_AB_ADDR_BITS+1:2]][23:16] <= wbs_dat_i[23:16];
+                if (wbs_sel_i[3]) cache_a[addr_offset[CACHE_AB_ADDR_BITS+1:2]][31:24] <= wbs_dat_i[31:24];
             end
 
             // Write to cache B
             if (wb_write && cache_b_access) begin
-                if (wbs_sel_i[0]) cache_b[addr_offset[5:2]][7:0]   <= wbs_dat_i[7:0];
-                if (wbs_sel_i[1]) cache_b[addr_offset[5:2]][15:8]  <= wbs_dat_i[15:8];
-                if (wbs_sel_i[2]) cache_b[addr_offset[5:2]][23:16] <= wbs_dat_i[23:16];
-                if (wbs_sel_i[3]) cache_b[addr_offset[5:2]][31:24] <= wbs_dat_i[31:24];
+                if (wbs_sel_i[0]) cache_b[addr_offset[CACHE_AB_ADDR_BITS+1:2]][7:0]   <= wbs_dat_i[7:0];
+                if (wbs_sel_i[1]) cache_b[addr_offset[CACHE_AB_ADDR_BITS+1:2]][15:8]  <= wbs_dat_i[15:8];
+                if (wbs_sel_i[2]) cache_b[addr_offset[CACHE_AB_ADDR_BITS+1:2]][23:16] <= wbs_dat_i[23:16];
+                if (wbs_sel_i[3]) cache_b[addr_offset[CACHE_AB_ADDR_BITS+1:2]][31:24] <= wbs_dat_i[31:24];
             end
 
             // Cache C is written by the accelerator in separate always block
@@ -206,17 +221,17 @@ module mat_mult_wb #(
             if (ctrl_access) begin
                 case (addr_offset[3:0])
                     4'h0: wbs_dat_o <= {23'h0, irq_enable, 5'h0, signed_mode, soft_reset, start_req};
-                    4'h4: wbs_dat_o <= {29'h0, ready, done, busy};
+                    4'h4: wbs_dat_o <= {28'h0, sticky_done, ready, done, busy};
                     4'h8: wbs_dat_o <= cycle_count;
                     4'hC: wbs_dat_o <= VERSION;
                     default: wbs_dat_o <= 32'h0;
                 endcase
             end else if (cache_a_access) begin
-                wbs_dat_o <= cache_a[addr_offset[5:2]];
+                wbs_dat_o <= cache_a[addr_offset[CACHE_AB_ADDR_BITS+1:2]];
             end else if (cache_b_access) begin
-                wbs_dat_o <= cache_b[addr_offset[5:2]];
+                wbs_dat_o <= cache_b[addr_offset[CACHE_AB_ADDR_BITS+1:2]];
             end else if (cache_c_access) begin
-                wbs_dat_o <= cache_c[addr_offset[7:2]];
+                wbs_dat_o <= cache_c[addr_offset[CACHE_C_ADDR_BITS+1:2]];
             end else begin
                 wbs_dat_o <= 32'hDEADBEEF;  // Invalid address
             end
@@ -303,7 +318,7 @@ module mat_mult_wb #(
     // =========================================================================
 
     reg [2:0] state, next_state;
-    reg [4:0] compute_count;  // 0-15 for feeding array, 16-23 for draining
+    reg [COMPUTE_COUNT_BITS-1:0] compute_count;  // Parameterized counter for compute and drain phases
 
     always @(posedge wb_clk_i) begin
         if (wb_rst_i || soft_reset) begin
@@ -329,13 +344,13 @@ module mat_mult_wb #(
             end
 
             STATE_COMPUTE: begin
-                if (compute_count == 5'd15) begin
+                if (compute_count == COMPUTE_END) begin
                     next_state = STATE_DRAIN;
                 end
             end
 
             STATE_DRAIN: begin
-                if (compute_count == 5'd23) begin
+                if (compute_count == DRAIN_END) begin
                     next_state = STATE_WRITEBACK;
                 end
             end
@@ -357,12 +372,12 @@ module mat_mult_wb #(
     // Compute counter
     always @(posedge wb_clk_i) begin
         if (wb_rst_i || soft_reset) begin
-            compute_count <= 5'd0;
+            compute_count <= {COMPUTE_COUNT_BITS{1'b0}};
         end else begin
             if (state == STATE_COMPUTE || state == STATE_DRAIN) begin
                 compute_count <= compute_count + 1;
             end else begin
-                compute_count <= 5'd0;
+                compute_count <= {COMPUTE_COUNT_BITS{1'b0}};
             end
         end
     end
@@ -377,6 +392,7 @@ module mat_mult_wb #(
             busy  <= 1'b0;
             done  <= 1'b0;
             ready <= 1'b1;
+            sticky_done <= 1'b0;
         end else begin
             case (state)
                 STATE_IDLE: begin
@@ -389,12 +405,14 @@ module mat_mult_wb #(
                     busy  <= 1'b1;
                     done  <= 1'b0;
                     ready <= 1'b0;
+                    sticky_done <= 1'b0;  // Auto-unset with new computation
                 end
 
                 STATE_DONE: begin
                     busy  <= 1'b0;
                     done  <= 1'b1;
                     ready <= 1'b0;
+                    sticky_done <= 1'b1;  // Set sticky bit
                 end
 
                 default: begin
@@ -403,6 +421,11 @@ module mat_mult_wb #(
                     ready <= 1'b1;
                 end
             endcase
+
+            // Clear sticky_done on write to status register
+            if (wb_write && ctrl_access && (addr_offset[3:0] == 4'h4)) begin
+                sticky_done <= 1'b0;
+            end
         end
     end
 
@@ -411,11 +434,11 @@ module mat_mult_wb #(
     // =========================================================================
 
     // Extract individual elements from cache
-    wire [DATA_WIDTH-1:0] a_elements [0:63];
-    wire [DATA_WIDTH-1:0] b_elements [0:63];
+    wire [DATA_WIDTH-1:0] a_elements [0:MATRIX_ELEMENTS-1];
+    wire [DATA_WIDTH-1:0] b_elements [0:MATRIX_ELEMENTS-1];
 
     generate
-        for (i = 0; i < 16; i = i + 1) begin : gen_unpack
+        for (i = 0; i < CACHE_AB_WORDS; i = i + 1) begin : gen_unpack
             assign a_elements[i*4 + 0] = cache_a[i][7:0];
             assign a_elements[i*4 + 1] = cache_a[i][15:8];
             assign a_elements[i*4 + 2] = cache_a[i][23:16];
@@ -431,6 +454,7 @@ module mat_mult_wb #(
     // Feed A data (horizontal, staggered by row)
     generate
         for (row = 0; row < MATRIX_SIZE; row = row + 1) begin : gen_feed_a
+            localparam ROW_IDX = row;  // Explicit parameter for this row
             reg [DATA_WIDTH-1:0] a_feed_reg;
 
             always @(posedge wb_clk_i) begin
@@ -438,8 +462,8 @@ module mat_mult_wb #(
                     a_feed_reg <= {DATA_WIDTH{1'b0}};
                 end else if (state == STATE_COMPUTE) begin
                     // Feed starts at different times for each row (diagonal wave)
-                    if (compute_count >= row && compute_count < (row + MATRIX_SIZE)) begin
-                        a_feed_reg <= a_elements[row * MATRIX_SIZE + (compute_count - row)];
+                    if (compute_count >= ROW_IDX && compute_count < (ROW_IDX + MATRIX_SIZE)) begin
+                        a_feed_reg <= a_elements[ROW_IDX * MATRIX_SIZE + (compute_count - ROW_IDX)];
                     end else begin
                         a_feed_reg <= {DATA_WIDTH{1'b0}};
                     end
@@ -448,13 +472,14 @@ module mat_mult_wb #(
                 end
             end
 
-            assign pe_a_in[row][0] = a_feed_reg;
+            assign pe_a_in[ROW_IDX][0] = a_feed_reg;
         end
     endgenerate
 
     // Feed B data (vertical, staggered by column)
     generate
         for (col = 0; col < MATRIX_SIZE; col = col + 1) begin : gen_feed_b
+            localparam COL_IDX = col;  // Explicit parameter for this column
             reg [DATA_WIDTH-1:0] b_feed_reg;
 
             always @(posedge wb_clk_i) begin
@@ -462,8 +487,8 @@ module mat_mult_wb #(
                     b_feed_reg <= {DATA_WIDTH{1'b0}};
                 end else if (state == STATE_COMPUTE) begin
                     // Feed starts at different times for each column (diagonal wave)
-                    if (compute_count >= col && compute_count < (col + MATRIX_SIZE)) begin
-                        b_feed_reg <= b_elements[(compute_count - col) * MATRIX_SIZE + col];
+                    if (compute_count >= COL_IDX && compute_count < (COL_IDX + MATRIX_SIZE)) begin
+                        b_feed_reg <= b_elements[(compute_count - COL_IDX) * MATRIX_SIZE + COL_IDX];
                     end else begin
                         b_feed_reg <= {DATA_WIDTH{1'b0}};
                     end
@@ -472,7 +497,7 @@ module mat_mult_wb #(
                 end
             end
 
-            assign pe_b_in[0][col] = b_feed_reg;
+            assign pe_b_in[0][COL_IDX] = b_feed_reg;
         end
     endgenerate
 
@@ -481,22 +506,17 @@ module mat_mult_wb #(
     // =========================================================================
 
     always @(posedge wb_clk_i) begin
-        integer idx_c;
+        integer idx_c, idx_col;
         if (wb_rst_i || soft_reset) begin
-            for (idx_c = 0; idx_c < 64; idx_c = idx_c + 1) begin
+            for (idx_c = 0; idx_c < MATRIX_ELEMENTS; idx_c = idx_c + 1) begin
                 cache_c[idx_c] <= 32'h0;
             end
         end else if (state == STATE_WRITEBACK) begin
             // Extract results from all PEs
             for (idx_c = 0; idx_c < MATRIX_SIZE; idx_c = idx_c + 1) begin
-                cache_c[idx_c * MATRIX_SIZE + 0] <= pe_result[idx_c][0];
-                cache_c[idx_c * MATRIX_SIZE + 1] <= pe_result[idx_c][1];
-                cache_c[idx_c * MATRIX_SIZE + 2] <= pe_result[idx_c][2];
-                cache_c[idx_c * MATRIX_SIZE + 3] <= pe_result[idx_c][3];
-                cache_c[idx_c * MATRIX_SIZE + 4] <= pe_result[idx_c][4];
-                cache_c[idx_c * MATRIX_SIZE + 5] <= pe_result[idx_c][5];
-                cache_c[idx_c * MATRIX_SIZE + 6] <= pe_result[idx_c][6];
-                cache_c[idx_c * MATRIX_SIZE + 7] <= pe_result[idx_c][7];
+                for (idx_col = 0; idx_col < MATRIX_SIZE; idx_col = idx_col + 1) begin
+                    cache_c[idx_c * MATRIX_SIZE + idx_col] <= pe_result[idx_c][idx_col];
+                end
             end
         end
     end
@@ -510,7 +530,9 @@ module mat_mult_wb #(
             cycle_count <= 32'h0;
         end else begin
             if (state == STATE_IDLE) begin
-                cycle_count <= 32'h0;
+                if (!sticky_done) begin
+                    cycle_count <= 32'h0;
+                end
             end else if (state != STATE_DONE) begin
                 cycle_count <= cycle_count + 1;
             end
@@ -559,38 +581,32 @@ module mat_mult_pe #(
     output wire [ACC_WIDTH-1:0]  result
 );
 
-    // Registered inputs for systolic dataflow
-    reg [DATA_WIDTH-1:0] a_reg;
-    reg [DATA_WIDTH-1:0] b_reg;
-
     // Accumulator
     reg [ACC_WIDTH-1:0] acc;
 
-    // Multiply result (signed or unsigned)
-    wire signed [DATA_WIDTH:0] a_signed = {a_reg[DATA_WIDTH-1], a_reg};
-    wire signed [DATA_WIDTH:0] b_signed = {b_reg[DATA_WIDTH-1], b_reg};
+    // Multiply result (signed or unsigned) - use inputs directly for 1-cycle delay
+    wire signed [DATA_WIDTH:0] a_signed = {a_in[DATA_WIDTH-1], a_in};
+    wire signed [DATA_WIDTH:0] b_signed = {b_in[DATA_WIDTH-1], b_in};
     wire signed [2*DATA_WIDTH+1:0] mult_signed = a_signed * b_signed;
 
-    wire [DATA_WIDTH-1:0] a_unsigned = a_reg;
-    wire [DATA_WIDTH-1:0] b_unsigned = b_reg;
+    wire [DATA_WIDTH-1:0] a_unsigned = a_in;
+    wire [DATA_WIDTH-1:0] b_unsigned = b_in;
     wire [2*DATA_WIDTH-1:0] mult_unsigned = a_unsigned * b_unsigned;
 
     wire [ACC_WIDTH-1:0] mult_result = signed_mode ?
                                        {{(ACC_WIDTH-2*DATA_WIDTH-2){mult_signed[2*DATA_WIDTH+1]}}, mult_signed} :
                                        {{(ACC_WIDTH-2*DATA_WIDTH){1'b0}}, mult_unsigned};
 
-    // Register inputs and pass through
+    // Register outputs for systolic dataflow (1 cycle delay,
+    // and while increases critical path, design limited by CPU
+    // clock anyways (https://caravel-harness.readthedocs.io/en/latest/maximum-ratings.html#absolute-maximum-ratings))
     always @(posedge clk) begin
         if (!rst_n) begin
-            a_reg <= {DATA_WIDTH{1'b0}};
-            b_reg <= {DATA_WIDTH{1'b0}};
             a_out <= {DATA_WIDTH{1'b0}};
             b_out <= {DATA_WIDTH{1'b0}};
         end else begin
-            a_reg <= a_in;
-            b_reg <= b_in;
-            a_out <= a_reg;  // Pass to next PE (with 1 cycle delay)
-            b_out <= b_reg;  // Pass to next PE (with 1 cycle delay)
+            a_out <= a_in;  // Pass to next PE (with 1 cycle delay)
+            b_out <= b_in;  // Pass to next PE (with 1 cycle delay)
         end
     end
 

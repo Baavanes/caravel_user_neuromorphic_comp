@@ -1,5 +1,4 @@
 from user_proj_tests.ram_word.ram_word import ram_word
-from user_proj_tests.mat_mult.mat_mult import mat_mult
 from user_proj_tests.mat_mult_version.mat_mult_version import mat_mult_version
 from user_proj_tests.mat_mult_status.mat_mult_status import mat_mult_status
 from user_proj_tests.mat_mult_identity.mat_mult_identity import mat_mult_identity

@@ -119,12 +119,6 @@ module user_project_wrapper #(
     mat_mult_wb #(
         .BASE_ADDR(MATMUL_BASE)  // Set to 0x31000000
     ) matmul_inst (
-    `ifdef USE_POWER_PINS
-        .VSS   (vssd1),
-        .VDDA  (vdda1),
-        .VDDC  (vccd1),
-    `endif
-
         // Wishbone interface (gated)
         .wb_clk_i  (wb_clk_i),
         .wb_rst_i  (wb_rst_i),

@@ -25,14 +25,14 @@ async def mat_mult_identity(dut):
 
     A = [[1, 0, 0...], [0, 1, 0...], [0, 0, 0...]]
     B = [[5, 6, 0...], [7, 8, 0...], [0, 0, 0...]]
-    Expected C = A × B = B
+    Expected C = A * B = B
     """
 
     # Configure environment with longer timeout for computation
     caravelEnv = await test_configure(dut, timeout_cycles=500000)
 
     cocotb.log.info(f"[TEST] Starting Matrix Multiplier Identity Test")
-    cocotb.log.info(f"[TEST] Computing: Identity × Matrix = Matrix")
+    cocotb.log.info(f"[TEST] Computing: Identity * Matrix = Matrix")
     cocotb.log.info(f"[TEST] A = 2x2 identity (padded to 8x8)")
     cocotb.log.info(f"[TEST] B = [[5,6],[7,8]] (padded to 8x8)")
     cocotb.log.info(f"[TEST] Expected C = B")

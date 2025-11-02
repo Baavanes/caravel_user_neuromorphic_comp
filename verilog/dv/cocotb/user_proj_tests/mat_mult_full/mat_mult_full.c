@@ -27,6 +27,7 @@ void *memset(void *s, int c, size_t n)
 #define CTRL_START        (1 << 0)
 #define CTRL_SIGNED       (1 << 2)
 #define STATUS_DONE       (1 << 1)
+#define STATUS_STICKY_DONE (1 << 3)
 #define MATRIX_SIZE       8
 #define MAX_POLL_CYCLES   2000
 
@@ -69,10 +70,11 @@ void write_matrix_b(int8_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     }
 }
 
-uint8_t wait_for_done(void)
+uint8_t wait_for_done_no_clear(void)
 {
     for (uint32_t i = 0; i < MAX_POLL_CYCLES; i++) {
-        if (*((volatile uint32_t *)MATMUL_STATUS) & STATUS_DONE) {
+        if (*((volatile uint32_t *)MATMUL_STATUS) & STATUS_STICKY_DONE) {
+            // DON'T clear sticky bit to record cycles
             return 1;
         }
         wait_cycles(10);
@@ -107,7 +109,7 @@ void main()
     // Start signed multiplication
     *((volatile uint32_t *)MATMUL_CTRL) = CTRL_START | CTRL_SIGNED;
 
-    if (!wait_for_done()) {
+    if (!wait_for_done_no_clear()) {
         while(1);  // Timeout
     }
 

@@ -30,7 +30,7 @@ async def mat_mult_full(dut):
     caravelEnv = await test_configure(dut, timeout_cycles=800000)
 
     cocotb.log.info(f"[TEST] Starting Matrix Multiplier Full 8x8 Test")
-    cocotb.log.info(f"[TEST] Computing: 8x8 × 8x8 matrix multiplication")
+    cocotb.log.info(f"[TEST] Computing: 8x8 * 8x8 matrix multiplication")
     cocotb.log.info(f"[TEST] A = [0..63], B = [0..63]")
     cocotb.log.info(f"[TEST] Expected cycle count: ~26")
 

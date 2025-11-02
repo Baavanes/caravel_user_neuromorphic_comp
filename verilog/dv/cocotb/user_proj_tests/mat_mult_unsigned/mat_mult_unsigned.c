@@ -26,6 +26,7 @@ void *memset(void *s, int c, size_t n)
 
 #define CTRL_START        (1 << 0)
 #define STATUS_DONE       (1 << 1)
+#define STATUS_STICKY_DONE (1 << 3)
 #define MATRIX_SIZE       8
 #define MAX_POLL_CYCLES   1000
 
@@ -71,7 +72,9 @@ void write_matrix_b(int8_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 uint8_t wait_for_done(void)
 {
     for (uint32_t i = 0; i < MAX_POLL_CYCLES; i++) {
-        if (*((volatile uint32_t *)MATMUL_STATUS) & STATUS_DONE) {
+        if (*((volatile uint32_t *)MATMUL_STATUS) & STATUS_STICKY_DONE) {
+            // Clear the sticky bit by writing to status register
+            *((volatile uint32_t *)MATMUL_STATUS) = 0;
             return 1;
         }
         wait_cycles(10);
