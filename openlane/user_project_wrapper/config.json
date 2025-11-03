@@ -79,11 +79,11 @@
   "ERROR_ON_MAGIC_DRC": false,
 
   "DRT_THREADS": 40,
-  "PL_TARGET_DENSITY_PCT": 60,
+  "PL_TARGET_DENSITY_PCT": 30,
   "MAX_TRANSITION_CONSTRAINT": 1.5,
 
   "//": "Allow routing congestion to proceed past global routing",
-  "GRT_ALLOW_CONGESTION": false,
+  "GRT_ALLOW_CONGESTION": true,
   "GRT_OVERFLOW_ITERS": 150,
 
   "//": "Will ignore synth",
