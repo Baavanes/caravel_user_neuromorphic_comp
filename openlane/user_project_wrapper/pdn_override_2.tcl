@@ -39,21 +39,26 @@ add_pdn_ring -grid core \
   -spacings "2 2" \
   -core_offset "8 8"
 
-# 5) Stripes: include MET3 to land on macro MET3 pins
-#    Offsets/pitches chosen to hit your LEF rectangles.
+add_pdn_stripe -grid core -layer met1 -width 0.48 -offset 80 -followpins -starts_with POWER
+
+# Minimal MET2: only 1-2 thin stripes for connectivity, positioned at die edges
+# Use narrow width (1.6um) and place near boundaries where routing is lighter
+add_pdn_stripe -grid core -layer met2 -width 1.6 -pitch 2800 -offset 100 -starts_with POWER
+
+# 5) Power distribution on upper metals
 add_pdn_stripe -grid core -layer met3 -width 6 -pitch 180 -offset 20 -starts_with POWER -extend_to_core_ring
 add_pdn_stripe -grid core -layer met4 -width 6 -pitch 180 -offset 20 -starts_with POWER -extend_to_core_ring
 add_pdn_stripe -grid core -layer met5 -width 6 -pitch 180 -offset 46 -starts_with POWER -extend_to_core_ring
 
-# 6) Macro grid so PDNGen stitches at instance "mprj"
+# 6) Macro grid
 define_pdn_grid -macro -default -name macro -starts_with POWER -halo "5 5"
 
-# 7) Stitch layers so MET3 pins connect up to ring/upper metals
+# 7) Sequential layer connections with high max_rows to minimize via density
+add_pdn_connect -grid core  -layers "met1 met2" -max_rows 50
+add_pdn_connect -grid core  -layers "met2 met3"
 add_pdn_connect -grid core  -layers "met3 met4"
 add_pdn_connect -grid core  -layers "met4 met5"
 add_pdn_connect -grid macro -layers "met3 met4"
 
-# 8) Build the PDN
-pdngen
-# -----------------------------------------------------------
+
 

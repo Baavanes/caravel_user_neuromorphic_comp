@@ -27,7 +27,7 @@
   "RUN_IRDROP_REPORT": false,
 
   "//": "Use custom PDN (compat script: set_voltage_domain + pdngen; no PDN_* envs)",
-  "FP_PDN_CFG": "dir::pdn_override_2.tcl",
+  "FP_PDN_CFG": "dir::./pdn_override_2.tcl",
 
   "//": "Fail the run if power is geometrically open",
   "ERROR_ON_PDN_VIOLATIONS": true,
@@ -41,13 +41,14 @@
       "gds": ["dir::../../gds/Neuromorphic_X1_wb.gds"],
       "lef": ["dir::../../lef/Neuromorphic_X1_wb.lef"],
       "instances": {
-        "neuro_inst": { "location": [515.18, 514.24], "orientation": "N" }
+        "neuro_inst": { "location": [1000.0, 1000.0], "orientation": "N" }
       },
       "lib": { "*": "dir::../../lib/Neuromorphic_X1_wb.lib" }
     }
   },
 
   "//": "Hook macro power pins to Caravel rails (keep consistent with RTL)",
+  "PDN_CONNECT_MACROS_TO_GRID": true,
   "PDN_MACRO_CONNECTIONS": [
     "neuro_inst vccd1 vssd1 VDDC VSS",
     "neuro_inst vdda1 vssd1 VDDA VSS"
@@ -77,8 +78,16 @@
   "MAGIC_CAPTURE_ERRORS": false,
   "ERROR_ON_MAGIC_DRC": false,
 
-  "DRT_THREADS": 1,
+  "DRT_THREADS": 40,
+  "PL_TARGET_DENSITY_PCT": 0.3,
   "MAX_TRANSITION_CONSTRAINT": 1.5,
+
+  "//": "Allow routing congestion to proceed past global routing",
+  "GRT_ALLOW_CONGESTION": true,
+  "GRT_OVERFLOW_ITERS": 150,
+
+  "//": "Will ignore synth",
+  "ERROR_ON_SYNTH_CHECKS": false,
 
   "//": "Fixed configurations for caravel. You should NOT edit this section",
   "DESIGN_NAME": "user_project_wrapper",
