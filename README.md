@@ -28,7 +28,7 @@ This project implements a small matrix multiplication accelerator utilizing syst
 1. **Clone the Repository:**
 
 ```bash
-git clone https://github.com/partcleda/caravel_user_neuromorphic_comp.git 
+git clone https://github.com/Baavanes/caravel_user_neuromorphic_comp.git
 ```
 
 2. **Prepare Your Environment:**
