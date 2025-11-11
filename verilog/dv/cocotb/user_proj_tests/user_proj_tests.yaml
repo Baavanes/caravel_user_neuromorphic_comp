@@ -22,5 +22,6 @@ includes:
     - mat_mult_unsigned/mat_mult_unsigned.yaml
     - mat_mult_reset/mat_mult_reset.yaml
     - mat_mult_full/mat_mult_full.yaml
+    - ram_word/ram_word.yaml
     - mat_mult_unsigned_wb/mat_mult_unsigned_wb.yaml
 
