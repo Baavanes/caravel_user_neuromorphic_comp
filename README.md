@@ -54,10 +54,11 @@ ipm install Neuromorphic_X1_32x32
 
 The cocotb simulation flow uses `verilog/includes/includes.rtl.caravel_user_project` as its source files, which includes a path to the Neuromorphic IP behavioral model. In order to avoid making a second `user_project_wrapper.v`, it is simpler to modify the behavioral model module name from `Neuromorphic_X1` to `Neuromorphic_X1_wb` to align with the stub that is used when actually hardening. With this change, the same `user_project_wrapper.v` works for both (cocotb) testbenching as well as hardening.
 
-In other words, rename line 16...
+In other words, rename line 16 and line 58...
 ```
 File: ip/Neuromorphic_X1_32x32/hdl/beh_model/Neuromorphic_X1_Beh.v
 16: module Neuromorphic_X1_wb (
+58: ADDR_MATCH = 32'h3000_0000
 ```
 
 6. **Run Testbenches:**
