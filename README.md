@@ -91,6 +91,8 @@ This neuromorphic accelerator targets real-time inference in extremely power-lim
 
 - Details about the Neuromorphic X1 IP: [Neuromorphic X1 documentation](https://github.com/BMsemi/Neuromorphic_X1_32x32)
 - Competition details: [ChipFoundry BM Labs Challenge](https://chipfoundry.io/challenges/bmlabs)
+- Adjustments from the original competition template: [ADJ_FROM_ORIG_TEMPLATE.md](./docs/ADJ_FROM_ORIG_TEMPLATE.md)
+- Notes about physical design (timing, antennas, etc.): [PD_NOTES.md](./docs/PD_NOTES.md)
 
 ## License
 

@@ -16,12 +16,6 @@
   "RUN_POST_GPL_DESIGN_REPAIR": true,
   "RUN_POST_CTS_RESIZER_TIMING": true,
   "DESIGN_REPAIR_BUFFER_INPUT_PORTS": true,
-
-  "//": "Hold fixing parameters",
-  "PL_RESIZER_HOLD_SLACK_MARGIN": 2.0,
-  "GLB_RESIZER_HOLD_SLACK_MARGIN": 1.0,
-  "PL_RESIZER_HOLD_MAX_BUFFER_PERCENT": 50,
-  "GLB_RESIZER_HOLD_MAX_BUFFER_PERCENT": 70,
   "FP_PDN_ENABLE_RAILS": true,
   "RUN_ANTENNA_REPAIR": true,
   "RUN_FILL_INSERTION": true,
@@ -29,23 +23,13 @@
   "RUN_CTS": true,
   "RUN_IRDROP_REPORT": false,
 
-  "//": "Don't buffer analog signals",
-  "RSZ_DONT_TOUCH_LIST": [
-    "analog_io[0]",
-    "analog_io[1]",
-    "analog_io[2]",
-    "analog_io[3]",
-    "analog_io[5]",
-    "analog_io[6]",
-    "analog_io[7]",
-    "analog_io[8]",
-    "analog_io[9]",
-    "analog_io[10]",
-    "analog_io[11]",
-    "analog_io[12]"
-  ],
+  "//": "Hold fixing parameters",
+  "PL_RESIZER_HOLD_SLACK_MARGIN": 2.0,
+  "GLB_RESIZER_HOLD_SLACK_MARGIN": 1.0,
+  "PL_RESIZER_HOLD_MAX_BUFFER_PERCENT": 50,
+  "GLB_RESIZER_HOLD_MAX_BUFFER_PERCENT": 70,
 
-  "//": "Use custom PDN (compat script: set_voltage_domain + pdngen; no PDN_* envs)",
+  "//": "Use precisely modifed PDN to connect macro to power at met3 to met4",
   "FP_PDN_CFG": "dir::./pdn_override_2.tcl",
 
   "//": "Fail the run if power is geometrically open",
@@ -92,23 +76,20 @@
   "MAGIC_CAPTURE_ERRORS": false,
   "ERROR_ON_MAGIC_DRC": false,
 
-  "DRT_THREADS": 40,
   "PL_TARGET_DENSITY_PCT": 20,
   "MAX_TRANSITION_CONSTRAINT": 1.5,
 
   "//": "Try to fix antenna errors, following https://librelane.readthedocs.io/en/latest/usage/caravel/index.html#openroad-checkantennas",
-  "GRT_ANTENNA_ITERS": 10,
-  "GRT_ANTENNA_MARGIN": 15,
+  "//": "but tighter to try and get antenna P/R under 3",
+  "GRT_ANTENNA_ITERS": 50,
+  "GRT_ANTENNA_MARGIN": 0,
   "RUN_HEURISTIC_DIODE_INSERTION": true,
-  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 800,
-  "PL_WIRE_LENGTH_COEF": 0.05,
+  "DESIGN_REPAIR_MAX_WIRE_LENGTH": 400,
+  "PL_WIRE_LENGTH_COEF": 0.02,
 
-  "//": "Allow routing congestion to proceed past global routing",
+  "//": "Don't allow routing congestion to proceed past global routing",
   "GRT_ALLOW_CONGESTION": false,
   "GRT_OVERFLOW_ITERS": 150,
-
-  "//": "Will ignore synth",
-  "ERROR_ON_SYNTH_CHECKS": false,
 
   "//": "Fixed configurations for caravel. You should NOT edit this section",
   "DESIGN_NAME": "user_project_wrapper",

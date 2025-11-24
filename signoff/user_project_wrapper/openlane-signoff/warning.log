@@ -1,10 +1,10 @@
 455 Lint warnings found.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 Cell 'Neuromorphic_X1_wb' has (91) input pin(s) without antenna gate information. They might not be connected to a gate.
 Cell 'Neuromorphic_X1_wb' has (34) output pin(s) without antenna diffusion information. They might not be driven.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [PDN-0239] Core ring shape falls outside the die bounds.
 Bterm vssa2 is declared as a 'GROUND' pin. It will be ignored.
 Bterm vdda2 is declared as a 'POWER' pin. It will be ignored.
@@ -14,70 +14,22 @@ Bterm vssa1 is declared as a 'GROUND' pin. It will be ignored.
 Bterm vdda1 is declared as a 'POWER' pin. It will be ignored.
 Bterm vssd1 is declared as a 'GROUND' pin. It will be ignored.
 Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0097] No global routing found for nets.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-0101] object 'analog_io\[0]' not found.
-[STA-0101] object 'analog_io\[1]' not found.
-[STA-0101] object 'analog_io\[2]' not found.
-[STA-0101] object 'analog_io\[3]' not found.
-[STA-0101] object 'analog_io\[5]' not found.
-[STA-0101] object 'analog_io\[6]' not found.
-[STA-0101] object 'analog_io\[7]' not found.
-[STA-0101] object 'analog_io\[8]' not found.
-[STA-0101] object 'analog_io\[9]' not found.
-[STA-0101] object 'analog_io\[10]' not found.
-[STA-0101] object 'analog_io\[11]' not found.
-[STA-0101] object 'analog_io\[12]' not found.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [RSZ-0065] max wire length less than 6335u increases wire delays.
-[STA-0101] object 'analog_io\[0]' not found.
-[STA-0101] object 'analog_io\[1]' not found.
-[STA-0101] object 'analog_io\[2]' not found.
-[STA-0101] object 'analog_io\[3]' not found.
-[STA-0101] object 'analog_io\[5]' not found.
-[STA-0101] object 'analog_io\[6]' not found.
-[STA-0101] object 'analog_io\[7]' not found.
-[STA-0101] object 'analog_io\[8]' not found.
-[STA-0101] object 'analog_io\[9]' not found.
-[STA-0101] object 'analog_io\[10]' not found.
-[STA-0101] object 'analog_io\[11]' not found.
-[STA-0101] object 'analog_io\[12]' not found.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0097] No global routing found for nets.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-0101] object 'analog_io\[0]' not found.
-[STA-0101] object 'analog_io\[1]' not found.
-[STA-0101] object 'analog_io\[2]' not found.
-[STA-0101] object 'analog_io\[3]' not found.
-[STA-0101] object 'analog_io\[5]' not found.
-[STA-0101] object 'analog_io\[6]' not found.
-[STA-0101] object 'analog_io\[7]' not found.
-[STA-0101] object 'analog_io\[8]' not found.
-[STA-0101] object 'analog_io\[9]' not found.
-[STA-0101] object 'analog_io\[10]' not found.
-[STA-0101] object 'analog_io\[11]' not found.
-[STA-0101] object 'analog_io\[12]' not found.
-[STA-0101] object 'analog_io\[0]' not found.
-[STA-0101] object 'analog_io\[1]' not found.
-[STA-0101] object 'analog_io\[2]' not found.
-[STA-0101] object 'analog_io\[3]' not found.
-[STA-0101] object 'analog_io\[5]' not found.
-[STA-0101] object 'analog_io\[6]' not found.
-[STA-0101] object 'analog_io\[7]' not found.
-[STA-0101] object 'analog_io\[8]' not found.
-[STA-0101] object 'analog_io\[9]' not found.
-[STA-0101] object 'analog_io\[10]' not found.
-[STA-0101] object 'analog_io\[11]' not found.
-[STA-0101] object 'analog_io\[12]' not found.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0097] No global routing found for nets.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
 [GRT-0036] Pin analog_io[11] is outside die area.
@@ -1716,10 +1668,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 'GPL_CELL_PADDING' is set to 0. This step may cause overlap failures.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
 [GRT-0036] Pin analog_io[11] is outside die area.
@@ -3358,7 +3310,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
 [GRT-0036] Pin analog_io[11] is outside die area.
@@ -4998,7 +4950,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
 [GRT-0036] Pin analog_io[0] is outside die area.
-[GRT-0036] Pin analog_io[10] is outside die area.
+[GRT-0036] Pin analog_io[11] is outside die area.
 [GRT-0036] Pin analog_io[12] is outside die area.
 [GRT-0036] Pin analog_io[1] is outside die area.
 [GRT-0036] Pin analog_io[2] is outside die area.
@@ -5179,10 +5131,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin la_data_out[100] is outside die area.
 [GRT-0036] Pin la_data_out[10] is outside die area.
 [GRT-0036] Pin io_oeb[0] is outside die area.
+[GRT-0036] Pin wb_clk_i is outside die area.
 [GRT-0036] Pin wb_rst_i is outside die area.
 [GRT-0036] Pin wbs_ack_o is outside die area.
 [GRT-0036] Pin wbs_adr_i[10] is outside die area.
-[GRT-0036] Pin wbs_adr_i[11] is outside die area.
 [GRT-0036] Pin wbs_adr_i[12] is outside die area.
 [GRT-0036] Pin wbs_adr_i[13] is outside die area.
 [GRT-0036] Pin wbs_adr_i[14] is outside die area.
@@ -5195,7 +5147,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_adr_i[21] is outside die area.
 [GRT-0036] Pin wbs_adr_i[22] is outside die area.
 [GRT-0036] Pin wbs_adr_i[23] is outside die area.
-[GRT-0036] Pin wbs_adr_i[24] is outside die area.
 [GRT-0036] Pin wbs_adr_i[25] is outside die area.
 [GRT-0036] Pin wbs_adr_i[26] is outside die area.
 [GRT-0036] Pin wbs_adr_i[27] is outside die area.
@@ -5204,23 +5155,18 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_adr_i[2] is outside die area.
 [GRT-0036] Pin wbs_adr_i[30] is outside die area.
 [GRT-0036] Pin wbs_adr_i[31] is outside die area.
-[GRT-0036] Pin wbs_adr_i[4] is outside die area.
 [GRT-0036] Pin wbs_adr_i[5] is outside die area.
 [GRT-0036] Pin wbs_adr_i[6] is outside die area.
 [GRT-0036] Pin wbs_adr_i[7] is outside die area.
 [GRT-0036] Pin wbs_adr_i[8] is outside die area.
+[GRT-0036] Pin wbs_adr_i[9] is outside die area.
 [GRT-0036] Pin wbs_cyc_i is outside die area.
-[GRT-0036] Pin wbs_dat_i[0] is outside die area.
-[GRT-0036] Pin wbs_dat_i[10] is outside die area.
 [GRT-0036] Pin wbs_dat_i[11] is outside die area.
 [GRT-0036] Pin wbs_dat_i[12] is outside die area.
 [GRT-0036] Pin wbs_dat_i[13] is outside die area.
 [GRT-0036] Pin wbs_dat_i[14] is outside die area.
-[GRT-0036] Pin wbs_dat_i[15] is outside die area.
 [GRT-0036] Pin wbs_dat_i[16] is outside die area.
 [GRT-0036] Pin wbs_dat_i[17] is outside die area.
-[GRT-0036] Pin wbs_dat_i[18] is outside die area.
-[GRT-0036] Pin wbs_dat_i[19] is outside die area.
 [GRT-0036] Pin wbs_dat_i[1] is outside die area.
 [GRT-0036] Pin wbs_dat_i[20] is outside die area.
 [GRT-0036] Pin wbs_dat_i[21] is outside die area.
@@ -5235,12 +5181,12 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_dat_i[2] is outside die area.
 [GRT-0036] Pin wbs_dat_i[30] is outside die area.
 [GRT-0036] Pin wbs_dat_i[31] is outside die area.
-[GRT-0036] Pin wbs_dat_i[3] is outside die area.
 [GRT-0036] Pin wbs_dat_i[4] is outside die area.
 [GRT-0036] Pin wbs_dat_i[5] is outside die area.
 [GRT-0036] Pin wbs_dat_i[6] is outside die area.
 [GRT-0036] Pin wbs_dat_i[7] is outside die area.
 [GRT-0036] Pin wbs_dat_i[8] is outside die area.
+[GRT-0036] Pin wbs_dat_i[9] is outside die area.
 [GRT-0036] Pin wbs_dat_o[0] is outside die area.
 [GRT-0036] Pin wbs_dat_o[10] is outside die area.
 [GRT-0036] Pin wbs_dat_o[11] is outside die area.
@@ -5273,11 +5219,9 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_dat_o[7] is outside die area.
 [GRT-0036] Pin wbs_dat_o[8] is outside die area.
 [GRT-0036] Pin wbs_dat_o[9] is outside die area.
-[GRT-0036] Pin wbs_sel_i[0] is outside die area.
 [GRT-0036] Pin wbs_sel_i[1] is outside die area.
 [GRT-0036] Pin wbs_sel_i[2] is outside die area.
 [GRT-0036] Pin io_oeb[20] is outside die area.
-[GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
 [GRT-0036] Pin analog_io[11] is outside die area.
@@ -5360,10 +5304,18 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[22] is outside die area.
 [GRT-0036] Pin io_oeb[23] is outside die area.
+[GRT-0036] Pin io_oeb[24] is outside die area.
+[GRT-0036] Pin io_oeb[25] is outside die area.
+[GRT-0036] Pin io_oeb[26] is outside die area.
+[GRT-0036] Pin io_oeb[27] is outside die area.
+[GRT-0036] Pin io_oeb[28] is outside die area.
+[GRT-0036] Pin io_oeb[29] is outside die area.
+[GRT-0036] Pin io_oeb[30] is outside die area.
+[GRT-0036] Pin io_oeb[3] is outside die area.
 [GRT-0036] message limit reached, this message will no longer print
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via
@@ -5374,9 +5326,9 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via3
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
 [DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer via4
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
-[STA-1140] /home/marcus/caravel_pdn_overhaul/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
+[STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 Cell 'user_project_wrapper' has (17) inout pin(s) without anetnna gate information not antenna diffusion information. They might be disconnected.
 Cell 'user_project_wrapper' has (291) input pin(s) without antenna gate information. They might not be connected to a gate.
 Cell 'user_project_wrapper' has (205) output pin(s) without antenna diffusion information. They might not be driven.
@@ -5385,17 +5337,12 @@ Setup violations found in the following corners:
 * min_ss_100C_1v60
 * nom_ss_100C_1v60
 Max Slew violations found in the following corners:
-* max_ff_n40C_1v95
 * max_ss_100C_1v60
 * max_tt_025C_1v80
 * min_ss_100C_1v60
-* min_tt_025C_1v80
 * nom_ss_100C_1v60
 * nom_tt_025C_1v80
 Max Cap violations found in the following corners:
 * max_ss_100C_1v60
-* max_tt_025C_1v80
 * min_ss_100C_1v60
-* min_tt_025C_1v80
 * nom_ss_100C_1v60
-* nom_tt_025C_1v80
