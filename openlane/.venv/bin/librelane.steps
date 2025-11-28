@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/marcus/caravel_user_neuromorphic_comp/openlane/.venv/bin/python3
+=======
+#!/home/vboxuser/caravel_user_Neuromorphic_X1_32x32/openlane/.venv/bin/python3
+>>>>>>> last-min-fix/main
 import sys
 from librelane.steps.__main__ import cli
 if __name__ == '__main__':

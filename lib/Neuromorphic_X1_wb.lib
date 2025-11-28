@@ -237,6 +237,12 @@ pin (Vcc_set) {
   max_transition : 0.50;
 }
 
+pin (dc_bias) {
+  direction : input;
+  capacitance : 0.01;
+  max_transition : 0.50;
+}
+
 pin (Vcc_wl_reset) {
   direction : input;
   capacitance : 0.01;

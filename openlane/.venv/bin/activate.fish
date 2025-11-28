@@ -13,6 +13,7 @@ function deactivate  -d "Exit virtual environment and return to normal shell env
     end
 
     if test -n "$_OLD_FISH_PROMPT_OVERRIDE"
+<<<<<<< HEAD
         functions -e fish_prompt
         set -e _OLD_FISH_PROMPT_OVERRIDE
         functions -c _old_fish_prompt fish_prompt
@@ -20,6 +21,19 @@ function deactivate  -d "Exit virtual environment and return to normal shell env
     end
 
     set -e VIRTUAL_ENV
+=======
+        set -e _OLD_FISH_PROMPT_OVERRIDE
+        # prevents error when using nested fish instances (Issue #93858)
+        if functions -q _old_fish_prompt
+            functions -e fish_prompt
+            functions -c _old_fish_prompt fish_prompt
+            functions -e _old_fish_prompt
+        end
+    end
+
+    set -e VIRTUAL_ENV
+    set -e VIRTUAL_ENV_PROMPT
+>>>>>>> last-min-fix/main
     if test "$argv[1]" != "nondestructive"
         # Self-destruct!
         functions -e deactivate
@@ -29,7 +43,11 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
 set -gx VIRTUAL_ENV /home/marcus/caravel_user_neuromorphic_comp/openlane/.venv
+=======
+set -gx VIRTUAL_ENV /home/vboxuser/caravel_user_Neuromorphic_X1_32x32/openlane/.venv
+>>>>>>> last-min-fix/main
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH
@@ -61,4 +79,8 @@ if test -z "$VIRTUAL_ENV_DISABLE_PROMPT"
     end
 
     set -gx _OLD_FISH_PROMPT_OVERRIDE "$VIRTUAL_ENV"
+<<<<<<< HEAD
+=======
+    set -gx VIRTUAL_ENV_PROMPT '(.venv) '
+>>>>>>> last-min-fix/main
 end

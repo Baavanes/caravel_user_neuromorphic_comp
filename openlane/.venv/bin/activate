@@ -28,6 +28,10 @@ deactivate () {
     fi
 
     unset VIRTUAL_ENV
+<<<<<<< HEAD
+=======
+    unset VIRTUAL_ENV_PROMPT
+>>>>>>> last-min-fix/main
     if [ ! "${1:-}" = "nondestructive" ] ; then
     # Self destruct!
         unset -f deactivate
@@ -37,7 +41,11 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+<<<<<<< HEAD
 VIRTUAL_ENV=/home/marcus/caravel_user_neuromorphic_comp/openlane/.venv
+=======
+VIRTUAL_ENV=/home/vboxuser/caravel_user_Neuromorphic_X1_32x32/openlane/.venv
+>>>>>>> last-min-fix/main
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -56,6 +64,11 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
     PS1='(.venv) '"${PS1:-}"
     export PS1
+<<<<<<< HEAD
+=======
+    VIRTUAL_ENV_PROMPT='(.venv) '
+    export VIRTUAL_ENV_PROMPT
+>>>>>>> last-min-fix/main
 fi
 
 # This should detect bash and zsh, which have a hash command that must
