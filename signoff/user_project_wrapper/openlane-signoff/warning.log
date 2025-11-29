@@ -1,6 +1,6 @@
-455 Lint warnings found.
+451 Lint warnings found.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-Cell 'Neuromorphic_X1_wb' has (91) input pin(s) without antenna gate information. They might not be connected to a gate.
+Cell 'Neuromorphic_X1_wb' has (92) input pin(s) without antenna gate information. They might not be connected to a gate.
 Cell 'Neuromorphic_X1_wb' has (34) output pin(s) without antenna diffusion information. They might not be driven.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
@@ -107,10 +107,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_oeb[17] is outside die area.
 [GRT-0036] Pin io_oeb[18] is outside die area.
 [GRT-0036] Pin io_oeb[19] is outside die area.
-[GRT-0036] Pin io_oeb[21] is outside die area.
+[GRT-0036] Pin io_oeb[20] is outside die area.
 [GRT-0036] Pin io_oeb[2] is outside die area.
-[GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[22] is outside die area.
+[GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[23] is outside die area.
 [GRT-0036] Pin io_oeb[24] is outside die area.
 [GRT-0036] Pin io_oeb[25] is outside die area.
@@ -144,10 +144,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_out[17] is outside die area.
 [GRT-0036] Pin io_out[18] is outside die area.
 [GRT-0036] Pin io_out[19] is outside die area.
-[GRT-0036] Pin io_out[21] is outside die area.
-[GRT-0036] Pin io_out[2] is outside die area.
 [GRT-0036] Pin io_out[20] is outside die area.
+[GRT-0036] Pin io_out[2] is outside die area.
 [GRT-0036] Pin io_out[22] is outside die area.
+[GRT-0036] Pin io_out[21] is outside die area.
 [GRT-0036] Pin io_out[23] is outside die area.
 [GRT-0036] Pin io_out[24] is outside die area.
 [GRT-0036] Pin io_out[25] is outside die area.
@@ -666,7 +666,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_sel_i[3] is outside die area.
 [GRT-0036] Pin wbs_stb_i is outside die area.
 [GRT-0036] Pin wbs_we_i is outside die area.
-[GRT-0036] Pin io_oeb[20] is outside die area.
+[GRT-0036] Pin io_oeb[21] is outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
@@ -890,8 +890,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
-[GRT-0041] Net vccd1 has wires/vias outside die area.
-[GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
@@ -1338,8 +1336,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
@@ -1563,6 +1559,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
@@ -1668,6 +1668,8 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
+[GRT-0230] Congestion iterations cannot increase overflow, reached the maximum number of times the total overflow can be increased.
+[GRT-0115] Global routing finished with overflow.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 'GPL_CELL_PADDING' is set to 0. This step may cause overlap failures.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
@@ -1749,10 +1751,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_oeb[17] is outside die area.
 [GRT-0036] Pin io_oeb[18] is outside die area.
 [GRT-0036] Pin io_oeb[19] is outside die area.
-[GRT-0036] Pin io_oeb[21] is outside die area.
+[GRT-0036] Pin io_oeb[20] is outside die area.
 [GRT-0036] Pin io_oeb[2] is outside die area.
-[GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[22] is outside die area.
+[GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[23] is outside die area.
 [GRT-0036] Pin io_oeb[24] is outside die area.
 [GRT-0036] Pin io_oeb[25] is outside die area.
@@ -1786,10 +1788,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_out[17] is outside die area.
 [GRT-0036] Pin io_out[18] is outside die area.
 [GRT-0036] Pin io_out[19] is outside die area.
-[GRT-0036] Pin io_out[21] is outside die area.
-[GRT-0036] Pin io_out[2] is outside die area.
 [GRT-0036] Pin io_out[20] is outside die area.
+[GRT-0036] Pin io_out[2] is outside die area.
 [GRT-0036] Pin io_out[22] is outside die area.
+[GRT-0036] Pin io_out[21] is outside die area.
 [GRT-0036] Pin io_out[23] is outside die area.
 [GRT-0036] Pin io_out[24] is outside die area.
 [GRT-0036] Pin io_out[25] is outside die area.
@@ -2308,7 +2310,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_sel_i[3] is outside die area.
 [GRT-0036] Pin wbs_stb_i is outside die area.
 [GRT-0036] Pin wbs_we_i is outside die area.
-[GRT-0036] Pin io_oeb[20] is outside die area.
+[GRT-0036] Pin io_oeb[21] is outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
@@ -2532,8 +2534,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
-[GRT-0041] Net vccd1 has wires/vias outside die area.
-[GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
@@ -2980,8 +2980,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
@@ -3205,6 +3203,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
@@ -3310,6 +3312,8 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
+[GRT-0230] Congestion iterations cannot increase overflow, reached the maximum number of times the total overflow can be increased.
+[GRT-0115] Global routing finished with overflow.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
@@ -3388,10 +3392,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_oeb[17] is outside die area.
 [GRT-0036] Pin io_oeb[18] is outside die area.
 [GRT-0036] Pin io_oeb[19] is outside die area.
-[GRT-0036] Pin io_oeb[21] is outside die area.
+[GRT-0036] Pin io_oeb[20] is outside die area.
 [GRT-0036] Pin io_oeb[2] is outside die area.
-[GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[22] is outside die area.
+[GRT-0036] Pin io_out[0] is outside die area.
 [GRT-0036] Pin io_oeb[23] is outside die area.
 [GRT-0036] Pin io_oeb[24] is outside die area.
 [GRT-0036] Pin io_oeb[25] is outside die area.
@@ -3425,10 +3429,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_out[17] is outside die area.
 [GRT-0036] Pin io_out[18] is outside die area.
 [GRT-0036] Pin io_out[19] is outside die area.
-[GRT-0036] Pin io_out[21] is outside die area.
-[GRT-0036] Pin io_out[2] is outside die area.
 [GRT-0036] Pin io_out[20] is outside die area.
+[GRT-0036] Pin io_out[2] is outside die area.
 [GRT-0036] Pin io_out[22] is outside die area.
+[GRT-0036] Pin io_out[21] is outside die area.
 [GRT-0036] Pin io_out[23] is outside die area.
 [GRT-0036] Pin io_out[24] is outside die area.
 [GRT-0036] Pin io_out[25] is outside die area.
@@ -3947,7 +3951,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_sel_i[3] is outside die area.
 [GRT-0036] Pin wbs_stb_i is outside die area.
 [GRT-0036] Pin wbs_we_i is outside die area.
-[GRT-0036] Pin io_oeb[20] is outside die area.
+[GRT-0036] Pin io_oeb[21] is outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
@@ -4171,8 +4175,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
 [GRT-0041] Net vccd1 has wires/vias outside die area.
-[GRT-0041] Net vccd1 has wires/vias outside die area.
-[GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
 [GRT-0041] Net vssd1 has wires/vias outside die area.
@@ -4619,8 +4621,6 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
 [GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vdda1 has wires/vias outside die area.
-[GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
@@ -4844,6 +4844,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
 [GRT-0041] Net vssa1 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
+[GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
@@ -4949,9 +4953,13 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] Net vccd2 has wires/vias outside die area.
 [GRT-0041] message limit reached, this message will no longer print
+[GRT-0230] Congestion iterations cannot increase overflow, reached the maximum number of times the total overflow can be increased.
+[GRT-0115] Global routing finished with overflow.
 [GRT-0036] Pin analog_io[0] is outside die area.
+[GRT-0036] Pin analog_io[10] is outside die area.
 [GRT-0036] Pin analog_io[11] is outside die area.
 [GRT-0036] Pin analog_io[12] is outside die area.
+[GRT-0036] Pin analog_io[13] is outside die area.
 [GRT-0036] Pin analog_io[1] is outside die area.
 [GRT-0036] Pin analog_io[2] is outside die area.
 [GRT-0036] Pin analog_io[3] is outside die area.
@@ -4960,10 +4968,10 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin analog_io[7] is outside die area.
 [GRT-0036] Pin analog_io[8] is outside die area.
 [GRT-0036] Pin analog_io[9] is outside die area.
-[GRT-0036] Pin io_in[21] is outside die area.
 [GRT-0036] Pin io_in[22] is outside die area.
 [GRT-0036] Pin io_in[24] is outside die area.
 [GRT-0036] Pin io_in[25] is outside die area.
+[GRT-0036] Pin io_in[26] is outside die area.
 [GRT-0036] Pin io_oeb[1] is outside die area.
 [GRT-0036] Pin io_oeb[11] is outside die area.
 [GRT-0036] Pin io_oeb[12] is outside die area.
@@ -4983,9 +4991,9 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_out[17] is outside die area.
 [GRT-0036] Pin io_out[18] is outside die area.
 [GRT-0036] Pin io_out[19] is outside die area.
-[GRT-0036] Pin io_out[21] is outside die area.
 [GRT-0036] Pin io_out[20] is outside die area.
 [GRT-0036] Pin io_out[22] is outside die area.
+[GRT-0036] Pin io_out[21] is outside die area.
 [GRT-0036] Pin io_out[23] is outside die area.
 [GRT-0036] Pin io_out[24] is outside die area.
 [GRT-0036] Pin io_out[25] is outside die area.
@@ -5134,19 +5142,21 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wb_clk_i is outside die area.
 [GRT-0036] Pin wb_rst_i is outside die area.
 [GRT-0036] Pin wbs_ack_o is outside die area.
+[GRT-0036] Pin wbs_adr_i[0] is outside die area.
 [GRT-0036] Pin wbs_adr_i[10] is outside die area.
 [GRT-0036] Pin wbs_adr_i[12] is outside die area.
 [GRT-0036] Pin wbs_adr_i[13] is outside die area.
 [GRT-0036] Pin wbs_adr_i[14] is outside die area.
 [GRT-0036] Pin wbs_adr_i[15] is outside die area.
 [GRT-0036] Pin wbs_adr_i[16] is outside die area.
+[GRT-0036] Pin wbs_adr_i[17] is outside die area.
 [GRT-0036] Pin wbs_adr_i[18] is outside die area.
-[GRT-0036] Pin wbs_adr_i[19] is outside die area.
 [GRT-0036] Pin wbs_adr_i[1] is outside die area.
 [GRT-0036] Pin wbs_adr_i[20] is outside die area.
 [GRT-0036] Pin wbs_adr_i[21] is outside die area.
 [GRT-0036] Pin wbs_adr_i[22] is outside die area.
 [GRT-0036] Pin wbs_adr_i[23] is outside die area.
+[GRT-0036] Pin wbs_adr_i[24] is outside die area.
 [GRT-0036] Pin wbs_adr_i[25] is outside die area.
 [GRT-0036] Pin wbs_adr_i[26] is outside die area.
 [GRT-0036] Pin wbs_adr_i[27] is outside die area.
@@ -5161,12 +5171,17 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_adr_i[8] is outside die area.
 [GRT-0036] Pin wbs_adr_i[9] is outside die area.
 [GRT-0036] Pin wbs_cyc_i is outside die area.
+[GRT-0036] Pin wbs_dat_i[0] is outside die area.
+[GRT-0036] Pin wbs_dat_i[10] is outside die area.
 [GRT-0036] Pin wbs_dat_i[11] is outside die area.
 [GRT-0036] Pin wbs_dat_i[12] is outside die area.
 [GRT-0036] Pin wbs_dat_i[13] is outside die area.
 [GRT-0036] Pin wbs_dat_i[14] is outside die area.
+[GRT-0036] Pin wbs_dat_i[15] is outside die area.
 [GRT-0036] Pin wbs_dat_i[16] is outside die area.
 [GRT-0036] Pin wbs_dat_i[17] is outside die area.
+[GRT-0036] Pin wbs_dat_i[18] is outside die area.
+[GRT-0036] Pin wbs_dat_i[19] is outside die area.
 [GRT-0036] Pin wbs_dat_i[1] is outside die area.
 [GRT-0036] Pin wbs_dat_i[20] is outside die area.
 [GRT-0036] Pin wbs_dat_i[21] is outside die area.
@@ -5181,6 +5196,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_dat_i[2] is outside die area.
 [GRT-0036] Pin wbs_dat_i[30] is outside die area.
 [GRT-0036] Pin wbs_dat_i[31] is outside die area.
+[GRT-0036] Pin wbs_dat_i[3] is outside die area.
 [GRT-0036] Pin wbs_dat_i[4] is outside die area.
 [GRT-0036] Pin wbs_dat_i[5] is outside die area.
 [GRT-0036] Pin wbs_dat_i[6] is outside die area.
@@ -5219,9 +5235,12 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin wbs_dat_o[7] is outside die area.
 [GRT-0036] Pin wbs_dat_o[8] is outside die area.
 [GRT-0036] Pin wbs_dat_o[9] is outside die area.
+[GRT-0036] Pin wbs_sel_i[0] is outside die area.
 [GRT-0036] Pin wbs_sel_i[1] is outside die area.
 [GRT-0036] Pin wbs_sel_i[2] is outside die area.
-[GRT-0036] Pin io_oeb[20] is outside die area.
+[GRT-0036] Pin wbs_stb_i is outside die area.
+[GRT-0036] Pin wbs_we_i is outside die area.
+[GRT-0036] Pin io_oeb[21] is outside die area.
 [GRT-0036] Pin analog_io[0] is outside die area.
 [GRT-0036] Pin analog_io[10] is outside die area.
 [GRT-0036] Pin analog_io[11] is outside die area.
@@ -5299,20 +5318,9 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [GRT-0036] Pin io_oeb[17] is outside die area.
 [GRT-0036] Pin io_oeb[18] is outside die area.
 [GRT-0036] Pin io_oeb[19] is outside die area.
-[GRT-0036] Pin io_oeb[21] is outside die area.
-[GRT-0036] Pin io_oeb[2] is outside die area.
-[GRT-0036] Pin io_out[0] is outside die area.
-[GRT-0036] Pin io_oeb[22] is outside die area.
-[GRT-0036] Pin io_oeb[23] is outside die area.
-[GRT-0036] Pin io_oeb[24] is outside die area.
-[GRT-0036] Pin io_oeb[25] is outside die area.
-[GRT-0036] Pin io_oeb[26] is outside die area.
-[GRT-0036] Pin io_oeb[27] is outside die area.
-[GRT-0036] Pin io_oeb[28] is outside die area.
-[GRT-0036] Pin io_oeb[29] is outside die area.
-[GRT-0036] Pin io_oeb[30] is outside die area.
-[GRT-0036] Pin io_oeb[3] is outside die area.
 [GRT-0036] message limit reached, this message will no longer print
+[GRT-0230] Congestion iterations cannot increase overflow, reached the maximum number of times the total overflow can be increased.
+[GRT-0115] Global routing finished with overflow.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
@@ -5329,7 +5337,7 @@ Bterm vccd1 is declared as a 'POWER' pin. It will be ignored.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
 Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
 [STA-1140] /home/marcus/caravel_user_neuromorphic_comp/lib/Neuromorphic_X1_wb.lib line 1, library Neuromorphic_X1_wb already exists.
-Cell 'user_project_wrapper' has (17) inout pin(s) without anetnna gate information not antenna diffusion information. They might be disconnected.
+Cell 'user_project_wrapper' has (16) inout pin(s) without anetnna gate information not antenna diffusion information. They might be disconnected.
 Cell 'user_project_wrapper' has (291) input pin(s) without antenna gate information. They might not be connected to a gate.
 Cell 'user_project_wrapper' has (205) output pin(s) without antenna diffusion information. They might not be driven.
 Setup violations found in the following corners:
@@ -5341,8 +5349,8 @@ Max Slew violations found in the following corners:
 * max_tt_025C_1v80
 * min_ss_100C_1v60
 * nom_ss_100C_1v60
-* nom_tt_025C_1v80
 Max Cap violations found in the following corners:
 * max_ss_100C_1v60
+* max_tt_025C_1v80
 * min_ss_100C_1v60
 * nom_ss_100C_1v60

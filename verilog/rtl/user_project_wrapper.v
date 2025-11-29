@@ -94,14 +94,14 @@ module user_project_wrapper #(
         // Scan/Test
         // io[0:6] either reserved or unused (on powerup),
         // so place after analog pins
-        .ScanInCC  (io_in[24]),
-        .ScanInDL  (io_in[21]),
-        .ScanInDR  (io_in[22]),
-        .TM        (io_in[25]),
-        .ScanOutCC (io_out[20]),
+        .ScanInCC  (io_in[25]),
+        .ScanInDL  (io_in[22]),
+        .ScanInDR  (io_in[24]),
+        .TM        (io_in[26]),
+        .ScanOutCC (io_out[21]),
 
         // Analog / bias pins (drive from analog_io[] wires you already built)
-        // analog_io[k] = io[k + 7], below essentially uses io[7:19]
+        // analog_io[k] = io[k + 7], below essentially uses io[7:20]
         .Iref          (analog_io[0]),
         .Vcc_read      (analog_io[1]),
         .Vcomp         (analog_io[2]),
@@ -113,7 +113,8 @@ module user_project_wrapper #(
         .Vcc_set       (analog_io[8]),
         .Vcc_reset     (analog_io[9]),
         .Vcc_L         (analog_io[10]),
-        .Vcc_Body      (analog_io[11])
+        .Vcc_Body      (analog_io[11]),
+        .dc_bias       (analog_io[13])
     );
 
     // -------------------------------------------------------------------------
@@ -156,14 +157,14 @@ module user_project_wrapper #(
     assign user_irq = {2'b00, irq_matmul};
 
     // https://chipfoundry.io/knowledge-base/connecting-gpios
-    // Make sure to drive io_oeb[20] low to enable io 20 (ScanOutCC) as output
-    assign io_oeb = {{(`MPRJ_IO_PADS-21){1'b1}}, 1'b0, {20{1'b1}}};
+    // Make sure to drive io_oeb[21] low to enable io 21 (ScanOutCC) as output
+    assign io_oeb = {{(`MPRJ_IO_PADS-22){1'b1}}, 1'b0, {21{1'b1}}};
 
     // Tie off unused outputs
-    assign la_data_out               = 128'b0;
-    assign io_out[`MPRJ_IO_PADS-1:21] = {(`MPRJ_IO_PADS-21){1'b0}};
-    assign io_out[19:0]               = {20{1'b0}};
-    // Note: io_out[20] driven by neuro_inst.ScanOutCC
+    assign la_data_out                = 128'b0;
+    assign io_out[`MPRJ_IO_PADS-1:22] = {(`MPRJ_IO_PADS-22){1'b0}};
+    assign io_out[20:0]               = {21{1'b0}};
+    // Note: io_out[21] driven by neuro_inst.ScanOutCC
 
 endmodule
 `default_nettype wire

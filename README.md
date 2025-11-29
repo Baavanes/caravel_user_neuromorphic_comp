@@ -23,6 +23,8 @@ This project implements a small matrix multiplication accelerator utilizing syst
 
 ## Replicating Locally
 
+**Unfortunately, at the time of writing this (11/29/2025), due to a change in the Neuromorphic IP this design requires additional steps than listed below AND no longer passes fully through ChipFoundry precheck. See [MACRO_CHANGE_NOTES.md](./docs/MACRO_CHANGE_NOTES.md).**
+
 ### Follow these steps to set up your environment and harden the design:
 
 1. **Clone the Repository:**
