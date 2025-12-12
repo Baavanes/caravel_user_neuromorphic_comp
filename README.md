@@ -98,4 +98,4 @@ This neuromorphic accelerator targets real-time inference in extremely power-lim
 
 ## License
 
-This project is licensed under Apache 2.0 - see LICENSE file for details
+This project is licensed under Apache 2.0 - see LICENSE file for detail
